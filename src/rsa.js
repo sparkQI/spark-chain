@@ -38,8 +38,10 @@ function generateKeys(){
       sk: keypair.getPrivate('hex').toString(),
       pk: keypair.getPublic('hex').toString(),
     }
+
     fs.writeFileSync(filename, JSON.stringify(res))
       console.log("generate");
+          return res
   }
 
 }
