@@ -40,10 +40,10 @@ class Blockchain {
     //trust node : address + port
     this.peers = []
     this.remote = {}
-    //95.169.22.154
+    //
     this.seed = {
       port: 9999,
-      address: 'localhost'
+      address: '95.169.22.154'
     }
     this.udp = dgrm.createSocket('udp4')
     this.init()
