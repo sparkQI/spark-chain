@@ -44,26 +44,28 @@ function generateKeys(){
 
 }
 // signature
-function sign({from, to, amount}){
-  const bufferMsg = Buffer.from(`${from}-${to}-${amount}`)
+function sign({from, to, amount,timestamp}){
+  const bufferMsg = Buffer.from(`${timestamp}-${from}-${to}-${amount}`)
   let signature = Buffer.from(keypair.sign(bufferMsg).toDER()).toString('hex')
   return signature
 }
 // verify
-function verify({from, to, amount, signature}, pk){
+function verify({from, to, amount, timestamp, signature}, pk){
   const keypairTemp = ec.keyFromPublic(pk,'hex')
-  const bufferMsg = Buffer.from(`${from}-${to}-${amount}`)
+  const bufferMsg = Buffer.from(`${timestamp}-${from}-${to}-${amount}`)
   return keypairTemp.verify(bufferMsg,signature)
 }
 
 //console.log(res);
 
 const keys = generateKeys()
-console.log(keys)
+// console.log(keys)
+//
+// const trans = {from:'aa',to:'bb',amount:100}
+// const signature = sign(trans)
+// console.log(signature)
+// trans.signature = signature
+// const isVerify = verify(trans,keys.pk)
+// console.log(isVerify);
 
-const trans = {from:'aa',to:'bb',amount:100}
-const signature = sign(trans)
-console.log(signature)
-trans.signature = signature
-const isVerify = verify(trans,keys.pk)
-console.log(isVerify);
+module.exports = {keys,sign,verify}

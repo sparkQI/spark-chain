@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start":"npm run dev",
+    "lint":"eslint --fix --ext .js src",
     "dev": "node src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -13,5 +15,8 @@
     "cli-table": "^0.3.1",
     "elliptic": "^6.4.1",
     "vorpal": "^1.12.0"
+  },
+  "devDependencies": {
+    "eslint": "^5.15.0"
   }
 }
